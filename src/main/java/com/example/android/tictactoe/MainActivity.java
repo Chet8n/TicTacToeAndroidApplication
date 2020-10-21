@@ -38,9 +38,26 @@ public class MainActivity extends AppCompatActivity {
             }
 
             if(drawn == 9){
-                winnerTextView.setText("Match Drawn!");
-                playAgainButton.setVisibility(View.VISIBLE);
-                winnerTextView.setVisibility(View.VISIBLE);
+                for (int[] x : checkWin) {
+                    if (box[x[0]] == box[x[1]] && box[x[1]] == box[x[2]] && box[x[0]] != 0) {
+                        won = true;
+                        String message;
+                        if (box[x[0]] == 1) {
+                            message = "Yellow";
+                        } else {
+                            message = "Red";
+                        }
+
+                        winnerTextView.setText(message + " has WON!");
+                        playAgainButton.setVisibility(View.VISIBLE);
+                        winnerTextView.setVisibility(View.VISIBLE);
+                    }
+                }
+                if(!won) {
+                    winnerTextView.setText("Match Drawn!");
+                    playAgainButton.setVisibility(View.VISIBLE);
+                    winnerTextView.setVisibility(View.VISIBLE);
+                }
             }else {
                 for (int[] x : checkWin) {
                     if (box[x[0]] == box[x[1]] && box[x[1]] == box[x[2]] && box[x[0]] != 0) {
